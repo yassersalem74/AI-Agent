@@ -20,7 +20,6 @@ import { MenuIconComponent } from "./icons/menu-icon/menu-icon.component";
     ChatTextAreaComponent,
     CommonModule,
     ChatHeaderComponent,
-    ChatBoxComponent,
     MenuIconComponent
 ],
   templateUrl: './app.component.html',
@@ -30,6 +29,7 @@ export class AppComponent {
   title = 'AI-agent';
 
   isSidebarOpen = false;
+  messages: string[] = []; // Array to hold messages
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -37,5 +37,9 @@ export class AppComponent {
 
   closeSidebar() {
     this.isSidebarOpen = false;
+  }
+
+  addMessage(message: string) {
+    this.messages.push(message); // Add new message to the array
   }
 }
