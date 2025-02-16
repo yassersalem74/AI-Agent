@@ -1,0 +1,41 @@
+<div class="bg-gray-800 text-white p-4 flex justify-end items-center shadow-lg">
+  <div class="flex items-center gap-3">
+    <!-- User Avatar and Name -->
+    <div class="ml-3">
+      <h2 class="text-lg font-semibold">New Chat</h2>
+    </div>
+    <app-add-icon />
+  </div>
+
+  <!-- Action Icons -->
+  <div class="flex items-center space-x-4">
+    <button class="text-gray-400 hover:text-white">
+      <i class="fas fa-video"></i>
+    </button>
+    <button class="text-gray-400 hover:text-white">
+      <i class="fas fa-phone"></i>
+    </button>
+    <button class="text-gray-400 hover:text-white relative" (click)="toggleActionMenu()">
+      <i class="fas fa-ellipsis-v"></i>
+      <!-- Action Menu Dropdown -->
+       @if(isActionMenuOpen){
+         <div class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-lg shadow-lg z-10">
+           <ul class="py-2">
+             <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer">
+               <i class="fas fa-user-circle mr-2"></i>View Profile
+             </li>
+             <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer">
+               <i class="fas fa-users mr-2"></i>Add to Close Friends
+             </li>
+             <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer">
+               <i class="fas fa-plus mr-2"></i>Add to Group
+             </li>
+             <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer">
+               <i class="fas fa-ban mr-2"></i>Block
+             </li>
+           </ul>
+         </div>
+       }
+    </button>
+  </div>
+</div>
