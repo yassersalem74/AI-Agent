@@ -29,7 +29,7 @@ export class AppComponent {
   title = 'AI-agent';
 
   isSidebarOpen = false;
-  messages: string[] = []; // Array to hold messages
+  messages: (string | File)[] = []; // Array to hold messages
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -39,7 +39,7 @@ export class AppComponent {
     this.isSidebarOpen = false;
   }
 
-  addMessage(message: string) {
+  addMessage(message: string | File) {
     this.messages.push(message); // Add new message to the array
   }
 }
