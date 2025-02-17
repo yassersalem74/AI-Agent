@@ -1,0 +1,39 @@
+.received-color {
+  background-color: #f6f6f6;
+}
+
+.record-message {
+  background-color: #a2c7f8;
+}
+
+#player02 {
+  grid-area: B;
+  height: fit-content;
+}
+
+#player02 .controls {
+  display: flex;
+  justify-content: space-around;
+}
+
+.player {
+  background-color: #2D2D2D;
+  border-radius: 10px;
+  padding: 10px;
+  color: #E1E1E6;
+}
+
+.player .controls svg {
+  cursor: pointer;
+}
+
+.player .controls svg:hover {
+  opacity: 0.8;
+}
+.play-icon, .pause-icon {
+  transition: opacity 0.3s ease;
+}
+
+.play-icon:hover, .pause-icon:hover {
+  opacity: 0.8;
+}

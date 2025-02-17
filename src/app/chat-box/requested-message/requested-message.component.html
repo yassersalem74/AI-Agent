@@ -1,5 +1,5 @@
 <div class="flex justify-end mb-4">
-  <div class="bg-green-400 p-3 rounded-lg">
+  <div class="requested-message p-3 rounded-lg">
     <p *ngIf="!isFileMessage()">{{ message }}</p>
     <div class="max-w-xs ">
       <img *ngIf="isFileMessage() && getMessageType().startsWith('image/')"
