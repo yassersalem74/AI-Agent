@@ -7,6 +7,10 @@
       placeholder="Type your message..."
       (keyup.enter)="sendMessage()"
     />
+    <!-- Send Icon (Triggers sendMessage) -->
+    <label class="cursor-pointer" style="width: 25px;" (click)="sendMessage()">
+      <app-send-icon style="width: 25px;" class="text-white" />
+    </label>
     <!-- File Upload Input -->
     <label for="file-upload" class="cursor-pointer" style="width: 25px;">
       <app-upload-icon style="width: 25px;" class="text-white" />

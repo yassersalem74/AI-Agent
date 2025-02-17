@@ -1,21 +1,21 @@
 <div
   class="flex h-screen bg-gradient-to-r from-blue-400 to-purple-500 main-background">
   <!-- Burger Menu Button -->
-  <button
+  <!-- <button
     (click)="toggleSidebar()"
     [class.hidden]="isSidebarOpen"
     class="fixed top-4 left-4 cursor-pointer p-2 bg-gray-600 rounded z-50">
     <i class="fas fa-bars">
       <app-menu-icon />
     </i>
-  </button>
+  </button> -->
 
   <!-- Sidebar -->
-  <app-sidebar [isOpen]="isSidebarOpen" (close)="closeSidebar()"></app-sidebar>
+  <!-- <app-sidebar [isOpen]="isSidebarOpen" (close)="closeSidebar()"></app-sidebar> -->
 
   <!-- Chat Container: Adjust width dynamically -->
-  <div class="flex-1 flex flex-col transition-all duration-300"
-  [ngClass]="{ 'ml-64': isSidebarOpen, 'ml-0': !isSidebarOpen }">
+  <div class="flex-1 flex flex-col transition-all duration-300">
+    <!-- [ngClass]="{ 'ml-64': isSidebarOpen, 'ml-0': !isSidebarOpen }" -->
   <app-chat-header></app-chat-header>
   <div class="flex-1 overflow-y-auto p-4 main-background flex justify-center">
     <div class="w-full md:w-3/4">
@@ -23,6 +23,7 @@
       <ng-container *ngFor="let message of messages">
         <app-requested-message [message]="message"></app-requested-message>
       </ng-container>
+      <app-record-message />
     </div>
   </div>
   <app-chat-text-area  class="flex justify-center"

@@ -7,20 +7,22 @@ import { RequestedMessageComponent } from './chat-box/requested-message/requeste
 import { ChatTextAreaComponent } from './chat-box/chat-text-area/chat-text-area.component';
 import { CommonModule } from '@angular/common';
 import { MenuIconComponent } from "./icons/menu-icon/menu-icon.component";
+import { RecordMessageComponent } from "./chat-box/respond-message/record-message/record-message.component";
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   imports: [
-    SidebarComponent,
+    // SidebarComponent,
     ChatHeaderComponent,
     TextMessageComponent,
     RequestedMessageComponent,
     ChatTextAreaComponent,
     CommonModule,
     ChatHeaderComponent,
-    MenuIconComponent
+    // MenuIconComponent,
+    RecordMessageComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

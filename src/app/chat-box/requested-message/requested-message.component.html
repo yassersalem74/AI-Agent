@@ -2,11 +2,17 @@
   <div class="bg-green-400 p-3 rounded-lg">
     <p *ngIf="!isFileMessage()">{{ message }}</p>
     <div class="max-w-xs ">
-      <img *ngIf="isFileMessage() && getMessageType().startsWith('image/')" [src]="fileUrl" alt="Uploaded Image" class=" h-auto max-w-full" />
+      <img *ngIf="isFileMessage() && getMessageType().startsWith('image/')"
+        [src]="fileUrl" alt="Uploaded Image" class=" h-auto max-w-full" />
     </div>
-    <a class="max-w-xs" *ngIf="isFileMessage() && getMessageType() === 'application/pdf'" [href]="fileUrl" target="_blank">View PDF</a>
-    <a  class="max-w-xs" *ngIf="isFileMessage() && (getMessageType() === 'application/msword' || getMessageType() === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')" [href]="fileUrl" target="_blank">View Document</a>
-    <p class="max-w-xs"  *ngIf="isFileMessage()" class="text-xs text-gray-600">Uploaded File: {{ getFileName() }}</p>
+    <a class="max-w-xs"
+      *ngIf="isFileMessage() && getMessageType() === 'application/pdf'"
+      [href]="fileUrl" target="_blank">View PDF</a>
+    <a class="max-w-xs"
+      *ngIf="isFileMessage() && (getMessageType() === 'application/msword' || getMessageType() === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')"
+      [href]="fileUrl" target="_blank">View Document</a>
+    <p class="max-w-xs" *ngIf="isFileMessage()"
+      class="text-xs text-gray-600">Uploaded File: {{ getFileName() }}</p>
     <span class="text-xs text-gray-600">8:55 AM, Today</span>
   </div>
   <img src="/user2.png" class="w-10 h-10 rounded-full ml-2">

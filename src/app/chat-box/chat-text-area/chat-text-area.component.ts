@@ -1,11 +1,12 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UploadIconComponent } from "../../icons/upload-icon/upload-icon.component";
+import { SendIconComponent } from "../../icons/send-icon/send-icon.component";
 
 @Component({
   standalone: true,
   selector: 'app-chat-text-area',
-  imports: [FormsModule, UploadIconComponent],
+  imports: [FormsModule, UploadIconComponent, SendIconComponent],
   templateUrl: './chat-text-area.component.html',
   styleUrl: './chat-text-area.component.css'
 })
@@ -28,8 +29,6 @@ export class ChatTextAreaComponent {
       // Validate file type
       const allowedTypes = [
         'application/pdf',
-        'application/msword',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'image/jpeg',
         'image/png',
         'image/gif'
