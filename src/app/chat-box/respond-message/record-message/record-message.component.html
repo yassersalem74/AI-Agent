@@ -46,16 +46,16 @@
           </div>
         </div>
 
-        <div class="controls">
+        <div class="controls audio-rectangle">
           <!-- Previous Button -->
-          <div class="prev cursor-pointer">
+          <div class="prev cursor-pointer ">
             <app-previous-icon />
           </div>
 
           <!-- Play/Pause Button -->
           <div class="play cursor-pointer" (click)="togglePlay()">
             <!-- Show Pause Icon when audio is playing -->
-            <app-pause-icon *ngIf="isPlaying" />
+            <app-pause-icon *ngIf="isPlaying" class="text-white"/>
             <!-- Show Play Icon when audio is paused -->
             <app-play-icon *ngIf="!isPlaying" />
           </div>
@@ -69,8 +69,9 @@
         <!-- Track and Time -->
         <div class="track-time">
           <div class="track"></div>
-          <div class="time">
+          <div class="time flex  gap-3 p-1">
             <div class="total-time">03:20</div>
+            <div class="total-time">-</div>
             <div class="last-time">00:12</div>
           </div>
         </div>

@@ -17,10 +17,10 @@
 }
 
 .player {
-  background-color: #2D2D2D;
+  background-color: #f6f6f6;
   border-radius: 10px;
   padding: 10px;
-  color: #E1E1E6;
+  color: black;
 }
 
 .player .controls svg {
@@ -36,4 +36,11 @@
 
 .play-icon:hover, .pause-icon:hover {
   opacity: 0.8;
+}
+
+
+.audio-rectangle{
+  background-color: #2D2D2D;
+  padding: 15px;
+  border-radius: 10px;
 }

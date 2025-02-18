@@ -8,6 +8,7 @@ import { ChatTextAreaComponent } from './chat-box/chat-text-area/chat-text-area.
 import { CommonModule } from '@angular/common';
 import { MenuIconComponent } from "./icons/menu-icon/menu-icon.component";
 import { RecordMessageComponent } from "./chat-box/respond-message/record-message/record-message.component";
+import { LoadingMessageComponent } from "./chat-box/loading-message/loading-message.component";
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -22,7 +23,8 @@ import { RecordMessageComponent } from "./chat-box/respond-message/record-messag
     CommonModule,
     ChatHeaderComponent,
     // MenuIconComponent,
-    RecordMessageComponent
+    RecordMessageComponent,
+    LoadingMessageComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
