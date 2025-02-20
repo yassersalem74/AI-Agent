@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { MenuIconComponent } from "./icons/menu-icon/menu-icon.component";
 import { RecordMessageComponent } from "./chat-box/respond-message/record-message/record-message.component";
 import { LoadingMessageComponent } from "./chat-box/loading-message/loading-message.component";
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { MessageService } from './services/message/message.service'; // Adjust the path as necessary
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -17,17 +19,19 @@ import { LoadingMessageComponent } from "./chat-box/loading-message/loading-mess
   imports: [
     // SidebarComponent,
     ChatHeaderComponent,
-    TextMessageComponent,
+    // TextMessageComponent,
     RequestedMessageComponent,
     ChatTextAreaComponent,
     CommonModule,
     ChatHeaderComponent,
     // MenuIconComponent,
     RecordMessageComponent,
-    LoadingMessageComponent
+    // LoadingMessageComponent,
+    HttpClientModule // Add HttpClientModule here
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  providers: [MessageService] // Ensure your service is provided
 })
 export class AppComponent {
   title = 'AI-agent';

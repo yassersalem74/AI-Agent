@@ -19,14 +19,12 @@
     <app-chat-header></app-chat-header>
     <div class="flex-1 overflow-y-auto p-4 main-background flex justify-center">
       <div class="w-full md:w-3/4">
-        <app-text-message></app-text-message>
+        <!-- <app-text-message></app-text-message> -->
         <ng-container *ngFor="let message of messages">
           <app-requested-message [message]="message"></app-requested-message>
         </ng-container>
         <app-record-message />
-        <div class="flex justify-start">
-          <app-loading-message class="w-full md:w-3/4"></app-loading-message>
-        </div>
+
       </div>
     </div>
     <app-chat-text-area class="flex justify-center border-t mt-5"

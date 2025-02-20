@@ -1,83 +1,44 @@
-<div class="flex mb-4">
-  <img src="/user2.png" class="w-10 h-10 rounded-full mr-2">
-  <div class="received-color rounded-lg flex flex-col gap-5">
+<!-- record-message.component.html -->
+<div *ngIf="isLoading; else recordMessage">
+  <app-loading-message class="w-full md:w-3/4"></app-loading-message>
+</div>
 
-    <!-- Custom Audio Player -->
-    <div id="player02" class="player horizontal">
-      <div class="wrapper">
-        <div class="info-wrapper">
-          <div class="info">
-            <p class="text-justify p-3">
-              خطاب دعوة لزيارة مدينة بورسعيد الباسلة
-              السيد الفاضل / هشام المحترم،
-              تحية طيبة وبعد،
-              يسرني أن أوجه إليك هذه الدعوة الكريمة لزيارة مدينة بورسعيد
-              الباسلة،
-              المدينة التي تحمل بين شوارعها
-              اهعون نم ةديرف ا
-              حورو ةفرشم تلاوطب اهخيراتو.
-              تعتبر بورسعيد واحدة من أهم المدن المصرية الساحلية، حيث تتميز
-              بموقعها
-              الجغرافي المتميز على المدخل
-              الشمالي لقناة السويس، وهو ما جعلها شاهدة على العديد من الأحداث
-              التاريخية
-              الهامة. ستجد في زيارتك
-              لهذه المدينة فرصة رائعة لاستكشاف معالمها الساحرة، مثل المتحف
-              الحربي الذي
-              يروي قصة صمودها،
-              وحديقة فريال التاريخية، وأسواقها الحرة التي توفر تجربة تسوق ممتعة
-              بأسعار
-              مميزة.
-              كما ستتمكن من الاستمتاع بنسمات البحر المتوسط الرائعة على شواطئ
-              المدينة،
-              وتذوق أشهى المأكولات
-              البحرية الطازجة في مطاعمها المميزة. ولا تفوت فرصة التجول في شارع
-              فلسطين
-              والاستمتاع بالممشى
-              السياحي الذي يتيح لك إطلالة خلابة على الميناء.
-              إن زيارتك إلى بورسعيد لن تكون مجرد رحلة ترفيهية فحسب، بل ستكون
-              تجربة
-              تاريخية وثقافية ممتعة،
-              حيث ستتعرف على كرم أهلها الطيبين وحفاوة استقبالهم التي تميزهم.
-              لاطبلأا ةنيدم يف ا
-              بيرق كئاقل ىلإ علطتنو ،هذه انتوعد لبقتت نأ لمأن.
-              مع خالص التحية والتقدير،
-            </p>
-          </div>
-        </div>
-
-        <div class="controls audio-rectangle">
-          <!-- Previous Button -->
-          <div class="prev cursor-pointer ">
-            <app-previous-icon />
+<ng-template #recordMessage>
+  <div class="flex mb-4">
+    <img src="/user2.png" class="w-10 h-10 rounded-full mr-2">
+    <div class="received-color rounded-lg flex flex-col gap-5">
+      <!-- Repeat for each audio item -->
+      <div *ngFor="let item of audioItems; let i = index" class="player horizontal mb-4">
+        <div class="wrapper">
+          <div class="info-wrapper">
+            <div class="info">
+              <p class="text-justify p-3">
+                {{ item.shortText }}
+              </p>
+            </div>
           </div>
 
-          <!-- Play/Pause Button -->
-          <div class="play cursor-pointer" (click)="togglePlay()">
-            <!-- Show Pause Icon when audio is playing -->
-            <app-pause-icon *ngIf="isPlaying" class="text-white"/>
-            <!-- Show Play Icon when audio is paused -->
-            <app-play-icon *ngIf="!isPlaying" />
+          <div class="controls audio-rectangle">
+            <!-- Play/Pause Button -->
+            <div class="play cursor-pointer" (click)="togglePlay(i)">
+              <app-pause-icon *ngIf="item.isPlaying" class="text-white"/>
+              <app-play-icon *ngIf="!item.isPlaying" />
+            </div>
           </div>
 
-          <!-- Next Button -->
-          <div class="next cursor-pointer">
-            <app-next-icon />
-          </div>
-        </div>
-
-        <!-- Track and Time -->
-        <div class="track-time">
-          <div class="track"></div>
-          <div class="time flex  gap-3 p-1">
-            <div class="total-time">03:20</div>
-            <div class="total-time">-</div>
-            <div class="last-time">00:12</div>
-          </div>
+          <!-- Track and Time -->
+          <!-- <div class="track-time">
+            <div class="track"></div>
+            <div class="time flex gap-3 p-1">
+              <div class="total-time">03:20</div>
+              <div class="total-time">-</div>
+              <div class="last-time">00:12</div>
+            </div>
+          </div> -->
         </div>
       </div>
-    </div>
 
-    <span class="text-xs text-gray-600 p-3">8:40 AM, Today</span>
+      <!-- <span class="text-xs text-gray-600 p-3">8:40 AM, Today</span> -->
+    </div>
   </div>
-</div>
+</ng-template>
