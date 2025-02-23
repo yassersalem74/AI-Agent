@@ -1,9 +1,9 @@
 <div class="flex justify-end mb-4">
   <div class="requested-message p-3 rounded-lg">
     <p *ngIf="!isFileMessage()">{{ message }}</p>
-    <div class="max-w-xs ">
+    <div class="max-w-xs">
       <img *ngIf="isFileMessage() && getMessageType().startsWith('image/')"
-        [src]="fileUrl" alt="Uploaded Image" class=" h-auto max-w-full" />
+        [src]="fileUrl" alt="Uploaded Image" class="h-auto max-w-full" />
     </div>
     <a class="max-w-xs"
       *ngIf="isFileMessage() && getMessageType() === 'application/pdf'"

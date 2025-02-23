@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-requested-message',
@@ -7,9 +7,16 @@ import { Component, Input } from '@angular/core';
   templateUrl: './requested-message.component.html',
   styleUrl: './requested-message.component.css'
 })
-export class RequestedMessageComponent {
+export class RequestedMessageComponent implements OnInit {
   @Input() message: string | File = '';
   fileUrl: string | null = null;
+
+  ngOnInit() {
+    if (this.isFileMessage()) {
+      this.fileUrl = this.getFileUrl();
+      console.log('Generated file URL:', this.fileUrl);
+    }
+  }
 
   isFileMessage(): boolean {
     return this.message instanceof File;
