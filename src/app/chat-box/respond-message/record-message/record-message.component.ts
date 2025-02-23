@@ -1,38 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { PreviousIconComponent } from "../../../icons/previous-icon/previous-icon.component";
+import { Component, Input, OnInit } from '@angular/core';
 import { PauseIconComponent } from "../../../icons/pause-icon/pause-icon.component";
-import { NextIconComponent } from "../../../icons/next-icon/next-icon.component";
 import { PlayIconComponent } from "../../../icons/play-icon/play-icon.component";
 import { CommonModule } from '@angular/common';
-import { MessageService } from '../../../services/message/message.service';
 import { LoadingMessageComponent } from "../../loading-message/loading-message.component";
 
 @Component({
+  standalone: true,
   selector: 'app-record-message',
   imports: [PauseIconComponent, PlayIconComponent, CommonModule, LoadingMessageComponent],
   templateUrl: './record-message.component.html',
-  styleUrl: './record-message.component.css'
+  styleUrls: ['./record-message.component.css']
 })
 export class RecordMessageComponent implements OnInit {
+  @Input() text: string = '';
+  @Input() audioUrl: string = '';
   audioItems: any[] = [];
   currentAudio: HTMLAudioElement | null = null;
   currentPlayingIndex: number | null = null;
   isLoading = true; // Track loading state
 
-  constructor(private messageService: MessageService) { }
-  audio = new Audio('/translate_tts.mp3'); // Audio file to play
-  isPlaying = true; // Track playback state, initialized to false
-
   ngOnInit() {
     // Simulate loading for 3 seconds
     setTimeout(() => {
       this.isLoading = false;
-      this.messageService.getAudioMessages().subscribe(data => {
-        this.audioItems = data.audioUrl.map((item: any) => ({
-          ...item,
+      if (this.text && this.audioUrl) {
+        const fullAudioUrl = `http://37.27.22.190:5511${this.audioUrl}`; // Construct full URL
+        this.audioItems = [{
+          shortText: this.text,
+          url: fullAudioUrl,
           isPlaying: false
-        }));
-      });
+        }];
+      }
     }, 3000);
   }
 

@@ -31,7 +31,6 @@ export class ChatTextAreaComponent {
         'application/pdf',
         'image/jpeg',
         'image/png',
-        'image/gif'
       ];
 
       if (allowedTypes.includes(file.type)) {

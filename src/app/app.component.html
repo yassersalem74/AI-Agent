@@ -1,32 +1,27 @@
-<div
-  class="flex h-screen">
-  <!-- Burger Menu Button -->
-  <!-- <button
-    (click)="toggleSidebar()"
-    [class.hidden]="isSidebarOpen"
-    class="fixed top-4 left-4 cursor-pointer p-2 bg-gray-600 rounded z-50">
-    <i class="fas fa-bars">
-      <app-menu-icon />
-    </i>
-  </button> -->
-
-  <!-- Sidebar -->
-  <!-- <app-sidebar [isOpen]="isSidebarOpen" (close)="closeSidebar()"></app-sidebar> -->
-
-  <!-- Chat Container: Adjust width dynamically -->
-  <div class="flex-1 flex flex-col transition-all duration-300">
-    <!-- [ngClass]="{ 'ml-64': isSidebarOpen, 'ml-0': !isSidebarOpen }" -->
+<div class="flex h-screen">
+  <div class="flex-1 flex flex-col">
     <app-chat-header></app-chat-header>
     <div class="flex-1 overflow-y-auto p-4 main-background flex justify-center">
       <div class="w-full md:w-3/4">
-        <!-- <app-text-message></app-text-message> -->
-        <ng-container *ngFor="let message of messages">
-          <app-requested-message [message]="message"></app-requested-message>
-        </ng-container>
-        <app-record-message />
+        <ng-container *ngFor="let msg of messages">
+          <!-- User Messages -->
+          <app-requested-message
+            *ngIf="msg.type === 'user'"
+            [message]="msg.content || ''">
+          </app-requested-message>
 
+          <!-- AI Responses -->
+          <app-record-message
+            *ngIf="msg.type === 'ai'"
+            [text]="msg.text || ''"
+            [audioUrl]="msg.audioUrl || ''">
+          </app-record-message>
+        </ng-container>
       </div>
     </div>
-    <app-chat-text-area class="flex justify-center border-t mt-5"
-      (messageSent)="addMessage($event)"></app-chat-text-area>
+    <app-chat-text-area
+      class="flex justify-center border-t mt-5"
+      (messageSent)="addMessage($event)">
+    </app-chat-text-area>
   </div>
+</div>

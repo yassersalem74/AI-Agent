@@ -1,53 +1,70 @@
 import { Component } from '@angular/core';
-import { ChatBoxComponent } from './chat-box/chat-box.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ChatHeaderComponent } from './header/header.component';
-import { TextMessageComponent } from './chat-box/respond-message/text-message/text-message.component';
-import { RequestedMessageComponent } from './chat-box/requested-message/requested-message.component';
-import { ChatTextAreaComponent } from './chat-box/chat-text-area/chat-text-area.component';
-import { CommonModule } from '@angular/common';
-import { MenuIconComponent } from "./icons/menu-icon/menu-icon.component";
+import { HttpClientModule } from '@angular/common/http';
+import { MessageService } from './services/message/message.service';
+import { ChatHeaderComponent } from "./header/header.component";
+import { RequestedMessageComponent } from "./chat-box/requested-message/requested-message.component";
 import { RecordMessageComponent } from "./chat-box/respond-message/record-message/record-message.component";
-import { LoadingMessageComponent } from "./chat-box/loading-message/loading-message.component";
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
-import { MessageService } from './services/message/message.service'; // Adjust the path as necessary
-// import { RouterOutlet } from '@angular/router';
+import { ChatTextAreaComponent } from "./chat-box/chat-text-area/chat-text-area.component";
+import { CommonModule } from '@angular/common';
+
+interface Message {
+  type: 'user' | 'ai';
+  content?: string | File;
+  text?: string;
+  audioUrl?: string;
+}
 
 @Component({
   standalone: true,
   selector: 'app-root',
   imports: [
-    // SidebarComponent,
     ChatHeaderComponent,
-    // TextMessageComponent,
     RequestedMessageComponent,
+    RecordMessageComponent,
     ChatTextAreaComponent,
     CommonModule,
-    ChatHeaderComponent,
-    // MenuIconComponent,
-    RecordMessageComponent,
-    // LoadingMessageComponent,
-    HttpClientModule // Add HttpClientModule here
-],
+    HttpClientModule
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  providers: [MessageService] // Ensure your service is provided
+  styleUrls: ['./app.component.css'],
+  providers: [MessageService]
 })
 export class AppComponent {
-  title = 'AI-agent';
+  messages: Message[] = [];
 
-  isSidebarOpen = false;
-  messages: (string | File)[] = []; // Array to hold messages
-
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
-
-  closeSidebar() {
-    this.isSidebarOpen = false;
-  }
+  constructor(private messageService: MessageService) {}
 
   addMessage(message: string | File) {
-    this.messages.push(message); // Add new message to the array
+    // Add user message
+    this.messages.push({ type: 'user', content: message });
+
+    // Send to appropriate endpoint
+    if (typeof message === 'string') {
+      this.messageService.sendText(message).subscribe({
+        next: (response) => {
+          this.messages.push({
+            type: 'ai',
+            text: response.data.text,
+            audioUrl: response.data.audioUrl
+          });
+        },
+        error: (error) => console.error(error)
+      });
+    } else {
+      const handler = message.type.startsWith('image/')
+        ? this.messageService.sendImage.bind(this.messageService)
+        : this.messageService.sendPdf.bind(this.messageService);
+
+      handler(message).subscribe({
+        next: (response) => {
+          this.messages.push({
+            type: 'ai',
+            text: response.data.text,
+            audioUrl: response.data.audioUrl
+          });
+        },
+        error: (error) => console.error(error)
+      });
+    }
   }
 }

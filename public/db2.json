@@ -1,0 +1,25 @@
+{
+  "status": "success",
+  "message": "audio file created successfully",
+  "data": {
+    "text": "ازيك محمد",
+    "audioUrl": "/speech_1740236301171.mp3"
+  }
+}
+http://37.27.22.190:5520/image-to-speech
+// http://37.27.22.190:5520/text-to-speech
+// http://37.27.22.190:5520/pdf-to-speech
+// http://37.27.22.190:5511
+// "audioUrl": "http://37.27.22.190:5511/speech_1740236301171.mp3"
+// {
+//   "text":"ازيك محمد"
+// }
+// form data ==> file
+
+
+// const form = new formData();
+//         form.append('file', file.buffer,
+// {
+//             filename: file.originalname, // You can specify the original file name
+//             contentType: file.mimetype, // You can specify the MIME type
+// });
