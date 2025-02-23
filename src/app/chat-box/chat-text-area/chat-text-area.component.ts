@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UploadIconComponent } from "../../icons/upload-icon/upload-icon.component";
 import { SendIconComponent } from "../../icons/send-icon/send-icon.component";
@@ -13,6 +13,7 @@ import { SendIconComponent } from "../../icons/send-icon/send-icon.component";
 export class ChatTextAreaComponent {
   message: string = '';
   @Output() messageSent = new EventEmitter<string | File>();
+  @Input() isLoading: boolean = false;
 
   sendMessage() {
     if (this.message.trim()) {

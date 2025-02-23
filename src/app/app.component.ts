@@ -31,24 +31,32 @@ interface Message {
 })
 export class AppComponent {
   messages: Message[] = [];
+  isLoading = false;
 
   constructor(private messageService: MessageService) {}
 
   addMessage(message: string | File) {
-    // Add user message
+    this.isLoading = true;
     this.messages.push({ type: 'user', content: message });
 
-    // Send to appropriate endpoint
+    const handleResponse = (response: any) => {
+      this.messages.push({
+        type: 'ai',
+        text: response.data.text,
+        audioUrl: response.data.audioUrl
+      });
+      this.isLoading = false;
+    };
+
+    const handleError = (error: any) => {
+      console.error(error);
+      this.isLoading = false;
+    };
+
     if (typeof message === 'string') {
       this.messageService.sendText(message).subscribe({
-        next: (response) => {
-          this.messages.push({
-            type: 'ai',
-            text: response.data.text,
-            audioUrl: response.data.audioUrl
-          });
-        },
-        error: (error) => console.error(error)
+        next: handleResponse,
+        error: handleError
       });
     } else {
       const handler = message.type.startsWith('image/')
@@ -56,14 +64,8 @@ export class AppComponent {
         : this.messageService.sendPdf.bind(this.messageService);
 
       handler(message).subscribe({
-        next: (response) => {
-          this.messages.push({
-            type: 'ai',
-            text: response.data.text,
-            audioUrl: response.data.audioUrl
-          });
-        },
-        error: (error) => console.error(error)
+        next: handleResponse,
+        error: handleError
       });
     }
   }

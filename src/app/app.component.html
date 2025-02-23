@@ -21,7 +21,8 @@
     </div>
     <app-chat-text-area
       class="flex justify-center border-t mt-5"
-      (messageSent)="addMessage($event)">
+      (messageSent)="addMessage($event)"
+      [isLoading]="isLoading">
     </app-chat-text-area>
   </div>
 </div>
