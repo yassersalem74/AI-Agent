@@ -5,9 +5,9 @@
 <ng-template #recordMessage>
   <div class="flex mb-4">
     <img src="/user2.png" class="w-10 h-10 rounded-full mr-2">
-    <div class="received-color rounded-lg flex flex-col gap-5">
+    <div class="received-color rounded-lg flex flex-col gap-5 w-full">
       <!-- Repeat for each audio item -->
-      <div *ngFor="let item of audioItems; let i = index" class="player horizontal mb-4">
+      <div *ngFor="let item of audioItems; let i = index" class="player horizontal mb-4 w-full">
         <div class="wrapper">
           <div class="info-wrapper">
             <div class="info">
@@ -17,23 +17,10 @@
             </div>
           </div>
 
-          <div class="controls audio-rectangle">
-            <!-- Play/Pause Button -->
-            <div class="play cursor-pointer" (click)="togglePlay(i)">
-              <app-pause-icon *ngIf="item.isPlaying" class="text-white"/>
-              <app-play-icon *ngIf="!item.isPlaying" />
-            </div>
-          </div>
-
-          <!-- Track and Time -->
-          <!-- <div class="track-time">
-            <div class="track"></div>
-            <div class="time flex gap-3 p-1">
-              <div class="total-time">03:20</div>
-              <div class="total-time">-</div>
-              <div class="last-time">00:12</div>
-            </div>
-          </div> -->
+          <!-- Standard HTML Audio Element -->
+          <audio [src]="item.url" controls   class="w-full">
+            Your browser does not support the audio element.
+          </audio>
         </div>
       </div>
 

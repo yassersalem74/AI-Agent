@@ -1,13 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PauseIconComponent } from "../../../icons/pause-icon/pause-icon.component";
-import { PlayIconComponent } from "../../../icons/play-icon/play-icon.component";
 import { CommonModule } from '@angular/common';
 import { LoadingMessageComponent } from "../../loading-message/loading-message.component";
 
 @Component({
   standalone: true,
   selector: 'app-record-message',
-  imports: [PauseIconComponent, PlayIconComponent, CommonModule, LoadingMessageComponent],
+  imports: [CommonModule, LoadingMessageComponent],
   templateUrl: './record-message.component.html',
   styleUrls: ['./record-message.component.css']
 })
@@ -31,7 +29,7 @@ export class RecordMessageComponent implements OnInit {
           isPlaying: false
         }];
       }
-    }, 3000);
+    });
   }
 
   togglePlay(index: number) {

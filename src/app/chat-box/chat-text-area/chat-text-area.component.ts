@@ -2,11 +2,12 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UploadIconComponent } from "../../icons/upload-icon/upload-icon.component";
 import { SendIconComponent } from "../../icons/send-icon/send-icon.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-chat-text-area',
-  imports: [FormsModule, UploadIconComponent, SendIconComponent],
+  imports: [FormsModule, UploadIconComponent, SendIconComponent, CommonModule],
   templateUrl: './chat-text-area.component.html',
   styleUrl: './chat-text-area.component.css'
 })
