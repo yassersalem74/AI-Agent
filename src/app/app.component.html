@@ -17,10 +17,13 @@
             [audioUrl]="msg.audioUrl || ''">
           </app-record-message>
         </ng-container>
+
+        <!-- Loading Message -->
+        <app-loading-message *ngIf="isLoading" class="w-full md:w-3/4"></app-loading-message>
       </div>
     </div>
     <app-chat-text-area
-    [ngClass]="{'loading-background': isLoading}"
+      [ngClass]="{'loading-background': isLoading}"
       class="flex justify-center border-t mt-5"
       (messageSent)="addMessage($event)"
       [isLoading]="isLoading">

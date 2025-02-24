@@ -6,6 +6,7 @@ import { RequestedMessageComponent } from "./chat-box/requested-message/requeste
 import { RecordMessageComponent } from "./chat-box/respond-message/record-message/record-message.component";
 import { ChatTextAreaComponent } from "./chat-box/chat-text-area/chat-text-area.component";
 import { CommonModule } from '@angular/common';
+import { LoadingMessageComponent } from "./chat-box/loading-message/loading-message.component";
 
 interface Message {
   type: 'user' | 'ai';
@@ -23,8 +24,9 @@ interface Message {
     RecordMessageComponent,
     ChatTextAreaComponent,
     CommonModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    LoadingMessageComponent
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [MessageService]
