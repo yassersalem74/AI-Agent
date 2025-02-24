@@ -6,3 +6,7 @@
 .received-color{
   background-color: #f6f6f6;
 }
+.loading-background {
+  background-color: rgb(233, 233, 233);
+  cursor: not-allowed;
+}
