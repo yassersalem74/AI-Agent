@@ -13,4 +13,8 @@ export class ChatHeaderComponent {
   toggleActionMenu() {
     this.isActionMenuOpen = !this.isActionMenuOpen;
   }
+
+  refreshPage(): void {
+    window.location.reload();
+  }
 }
