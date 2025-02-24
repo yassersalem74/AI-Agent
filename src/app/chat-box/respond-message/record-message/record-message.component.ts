@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingMessageComponent } from "../../loading-message/loading-message.component";
+import { environment } from './../../../../environments/environment';
 
 @Component({
   standalone: true,
   selector: 'app-record-message',
   imports: [CommonModule, LoadingMessageComponent],
-  templateUrl: './record-message.component.html',
+templateUrl: './record-message.component.html',
   styleUrls: ['./record-message.component.css']
 })
 export class RecordMessageComponent implements OnInit {
@@ -22,7 +23,7 @@ export class RecordMessageComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
       if (this.text && this.audioUrl) {
-        const fullAudioUrl = `http://37.27.22.190:5511${this.audioUrl}`; // Construct full URL
+        const fullAudioUrl = `${environment.audioBaseUrl}${this.audioUrl}`;
         this.audioItems = [{
           shortText: this.text,
           url: fullAudioUrl,
