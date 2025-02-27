@@ -2,6 +2,15 @@
   <div
     [ngClass]="{'loading-background': isLoading}"
     class="flex justify-center items-center gap-1">
+    <!-- Dropdown for Voice Type -->
+    <select [(ngModel)]="selectedVoice"
+      [ngClass]="{'loading-voice': isLoading}"
+      class="border-2 p-2 bg-blue-950 text-white cursor-pointer rounded-lg"
+      [disabled]="isLoading">
+      <option *ngFor="let voice of voices" [value]="voice"
+        [ngClass]="{'loading-voice': isLoading}"
+        class="cursor-pointer">{{ voice }}</option>
+    </select>
     <input
       [ngClass]="{'loading-background': isLoading}"
       type="text"
@@ -10,21 +19,18 @@
       placeholder="Type your message..."
       (keyup.enter)="sendMessage()"
       [disabled]="isLoading" />
-    <!-- Dropdown for Voice Type -->
-    <select [(ngModel)]="selectedVoice" class="border-2 p-2" [disabled]="isLoading">
-      <option *ngFor="let voice of voices" [value]="voice">{{ voice }}</option>
-    </select>
+
     <!-- Send Icon (Triggers sendMessage) -->
     <label class="cursor-pointer" style="width: 25px;" (click)="sendMessage()">
       <app-send-icon
-      [ngClass]="{'not-allowed': isLoading}"
-      style="width: 25px;" class="text-black" />
+        [ngClass]="{'not-allowed': isLoading}"
+        style="width: 25px;" class="text-blue-950" />
     </label>
     <!-- File Upload Input -->
-    <label for="file-upload" class="cursor-pointer" style="width: 25px;">
+    <label for="file-upload" class="cursor-pointer " style="width: 25px;">
       <app-upload-icon
-      [ngClass]="{'not-allowed': isLoading}"
-      style="width: 25px;" class="text-black" />
+        [ngClass]="{'not-allowed': isLoading}"
+        style="width: 25px;" class="text-blue-950" />
     </label>
     <input
       id="file-upload"

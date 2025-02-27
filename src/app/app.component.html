@@ -24,7 +24,7 @@
     </div>
     <app-chat-text-area
       [ngClass]="{'loading-background': isLoading}"
-      class="flex justify-center border-t mt-5"
+      class="flex justify-center border-t mt-5 bg-gray-100"
       (messageSent)="addMessage($event)"
       [isLoading]="isLoading">
     </app-chat-text-area>
