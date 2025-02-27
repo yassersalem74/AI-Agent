@@ -37,7 +37,7 @@ export class AppComponent {
 
   constructor(private messageService: MessageService) {}
 
-  addMessage(message: string | File) {
+  addMessage({ message, voice }: { message: string | File, voice: string }) {
     this.isLoading = true;
     this.messages.push({ type: 'user', content: message });
 
@@ -56,7 +56,7 @@ export class AppComponent {
     };
 
     if (typeof message === 'string') {
-      this.messageService.sendText(message).subscribe({
+      this.messageService.sendText(message, voice).subscribe({
         next: handleResponse,
         error: handleError
       });
@@ -65,7 +65,7 @@ export class AppComponent {
         ? this.messageService.sendImage.bind(this.messageService)
         : this.messageService.sendPdf.bind(this.messageService);
 
-      handler(message).subscribe({
+      handler(message, voice).subscribe({
         next: handleResponse,
         error: handleError
       });

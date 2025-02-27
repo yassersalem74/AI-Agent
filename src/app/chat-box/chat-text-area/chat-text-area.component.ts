@@ -13,12 +13,15 @@ import { CommonModule } from '@angular/common';
 })
 export class ChatTextAreaComponent {
   message: string = '';
-  @Output() messageSent = new EventEmitter<string | File>();
+  @Output() messageSent = new EventEmitter<{ message: string | File, voice: string }>();
   @Input() isLoading: boolean = false;
+
+  voices: string[] = ['alloy', 'ash', 'coral', 'echo', 'fable', 'nova', 'onyx', 'sage', 'shimmer'];
+  selectedVoice: string = 'alloy'; // Default voice
 
   sendMessage() {
     if (this.message.trim()) {
-      this.messageSent.emit(this.message);
+      this.messageSent.emit({ message: this.message, voice: this.selectedVoice });
       this.message = ''; // Clear the input after sending
     }
   }
@@ -36,7 +39,7 @@ export class ChatTextAreaComponent {
       ];
 
       if (allowedTypes.includes(file.type)) {
-        this.messageSent.emit(file); // Emit the selected file
+        this.messageSent.emit({ message: file, voice: this.selectedVoice }); // Emit the selected file with voice
       } else {
         alert('Invalid file type. Please upload only PDF, Word, or image files.');
       }

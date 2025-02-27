@@ -10,6 +10,10 @@
       placeholder="Type your message..."
       (keyup.enter)="sendMessage()"
       [disabled]="isLoading" />
+    <!-- Dropdown for Voice Type -->
+    <select [(ngModel)]="selectedVoice" class="border-2 p-2" [disabled]="isLoading">
+      <option *ngFor="let voice of voices" [value]="voice">{{ voice }}</option>
+    </select>
     <!-- Send Icon (Triggers sendMessage) -->
     <label class="cursor-pointer" style="width: 25px;" (click)="sendMessage()">
       <app-send-icon

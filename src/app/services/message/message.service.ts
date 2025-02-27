@@ -11,25 +11,26 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  private getHeaders(): HttpHeaders {
+  private getHeaders(voice: string): HttpHeaders {
     return new HttpHeaders({
-      'x-platform': 'fuse'
+      'x-platform': 'fuse',
+      'voice': voice
     });
   }
 
-  sendText(text: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/text-to-speech`, { text }, { headers: this.getHeaders() });
+  sendText(text: string, voice: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/text-to-speech`, { text }, { headers: this.getHeaders(voice) });
   }
 
-  sendImage(image: File): Observable<any> {
+  sendImage(image: File, voice: string): Observable<any> {
     const formData = new FormData();
     formData.append('file', image);
-    return this.http.post(`${this.baseUrl}/image-to-speech`, formData, { headers: this.getHeaders() });
+    return this.http.post(`${this.baseUrl}/image-to-speech`, formData, { headers: this.getHeaders(voice) });
   }
 
-  sendPdf(pdf: File): Observable<any> {
+  sendPdf(pdf: File, voice: string): Observable<any> {
     const formData = new FormData();
     formData.append('file', pdf);
-    return this.http.post(`${this.baseUrl}/pdf-to-speech`, formData, { headers: this.getHeaders() });
+    return this.http.post(`${this.baseUrl}/pdf-to-speech`, formData, { headers: this.getHeaders(voice) });
   }
 }
